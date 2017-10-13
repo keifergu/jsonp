@@ -13,7 +13,7 @@
   <script>
     var app = document.getElementById('app')
     function getData() {
-      jsonp.get('./username', function (data) {
+      jsonp.get('http://127.0.0.1:3000/username', function (data) {
         app.textContent = data.name
       })
     }

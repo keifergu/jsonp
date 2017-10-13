@@ -1,0 +1,25 @@
+{
+  "name": "jsonp",
+  "version": "1.0.0",
+  "description": "Implementation of jsonp.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keifergu/jsonp.git"
+  },
+  "keywords": [
+    "jsonp"
+  ],
+  "author": "Keifer Gu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keifergu/jsonp/issues"
+  },
+  "homepage": "https://github.com/keifergu/jsonp#readme",
+  "dependencies": {
+    "koa": "^2.3.0"
+  }
+}

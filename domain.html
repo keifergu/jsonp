@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+  <title>Domain 跨域</title>
+</head>
+<body>
+  <div>当前的域名为：<span id="domain"></span></div>
+  <button onclick="setDomain()">设置document.domain</button>
+  <button onclick="getData()">获取数据</button>
+  <div id="data"></div>
+  <script>
+    var dataEl = document.getElementById("data")
+
+    showDomain()
+
+    function getData() {
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        
+        if(xhr.readyState === 4) {
+          data = JSON.parse(xhr.responseText)
+          dataEl.textContent = '请求头referer: ' + data.header.referer
+        }
+        console.log(xhr.readyState)
+      }
+      xhr.open('get', 'http://localhost:3000/acao', true)
+      xhr.withCredentials = true
+      xhr.send()
+    }
+
+    function setDomain() {
+      document.domain = "a.localhost"
+      showDomain()
+    }
+
+    function showDomain() {
+      var domainEl = document.getElementById("domain")
+      domainEl.textContent = document.domain
+    }
+
+    console.log(window.app);
+  </script>
+</body>
+</html>

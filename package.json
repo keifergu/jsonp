@@ -4,6 +4,7 @@
   "description": "Implementation of jsonp.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js & python -m SimpleHTTPServer",
     "test": "npm run test"
   },
   "repository": {

@@ -15,6 +15,8 @@ app.use( async ( ctx ) => {
     break
   case 'acao':
     ctx.set("Access-Control-Allow-Origin", "http://localhost:8000")
+    ctx.set("Access-Control-Allow-Credentials", "true")
+    ctx.set("Access-Control-Allow-Headers", "Content-Type")
     ctx.body = JSON.stringify(ctx.request)
     break
   default:

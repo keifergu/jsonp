@@ -12,12 +12,15 @@
   <div id="app">未获取到数据</div>
   <button onclick="getData()">JSONP</button>
   <a href="http://localhost:3000/domain.html" target="_blank">使用window.domain的跨域例子</a>
-  <iframe src="http://localhost:3000/domain.html" frameborder="0"></iframe>
+  <iframe src="http://a.a.localhost:8000/domain.html" frameborder="0"></iframe>
   <script>
     var app = document.getElementById('app')
     function getData() {
       jsonp.get('http://127.0.0.1:3000/username', function (data) {
         app.textContent = data.name
+        console.log('jsonp');
+      }, function (err) {
+        console.log(err);
       })
     }
   </script>

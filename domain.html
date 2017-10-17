@@ -9,8 +9,11 @@
 </head>
 <body>
   <div>当前的域名为：<span id="domain"></span></div>
+  <div>父级的域名为：<span id="parent"></span></div>
   <button onclick="setDomain()">设置document.domain</button>
+  <input type="text" id="domainInput">
   <button onclick="getData()">获取数据</button>
+  <button onclick="postData()">POST数据</button>
   <div id="data"></div>
   <script>
     var dataEl = document.getElementById("data")
@@ -20,15 +23,34 @@
     function getData() {
       var xhr = new XMLHttpRequest()
       xhr.onreadystatechange = function () {
-        
+        console.log(xhr.readyState)
         if(xhr.readyState === 4) {
           data = JSON.parse(xhr.responseText)
           dataEl.textContent = '请求头referer: ' + data.header.referer
         }
-        console.log(xhr.readyState)
+      }
+      xhr.onerror = function (e) {
+        console.log(e);
       }
       xhr.open('get', 'http://localhost:3000/acao', true)
       xhr.withCredentials = true
+      xhr.send()
+    }
+
+    function postData() {
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4) {
+          data = JSON.parse(xhr.responseText)
+          dataEl.textContent = '请求头referer: ' + data.header.referer
+        }
+      }
+      xhr.onerror = function (e) {
+        console.log(e);
+      }
+      xhr.open('post', 'http://localhost:3000/acao', true)
+      xhr.withCredentials = true
+      xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send()
     }
 
@@ -39,10 +61,11 @@
 
     function showDomain() {
       var domainEl = document.getElementById("domain")
+      var parentEl = document.getElementById("parent")
       domainEl.textContent = document.domain
+      parentEl.textContent = window.parent.document.domain
     }
 
-    console.log(window.app);
   </script>
 </body>
 </html>
